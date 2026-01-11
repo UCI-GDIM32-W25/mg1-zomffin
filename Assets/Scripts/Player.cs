@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
 
         _playerTransform.position = _playerTransform.position + new Vector3(_horizontal * _speed * Time.deltaTime, _vertical * _speed * Time.deltaTime, 0);
 
+        changeSprite(_horizontal, _vertical); 
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlantSeed();
@@ -59,5 +61,29 @@ public class Player : MonoBehaviour
     {
         _numSeedsLeft++;
         _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted); 
+    }
+
+    private void changeSprite(float horizontal, float vertical)
+    {
+        if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        {
+            if(horizontal < 0)
+            {
+                _playerSprite.sprite = _sprites[1];
+            } else
+            {
+                _playerSprite.sprite = _sprites[2]; 
+            }
+        } else
+        {
+            if (vertical <= 0)
+            {
+                _playerSprite.sprite = _sprites[0]; 
+            } else
+            {
+                _playerSprite.sprite = _sprites[3]; 
+            }
+        }
+
     }
 }
