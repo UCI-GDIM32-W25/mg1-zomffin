@@ -15,6 +15,12 @@ public class Player : MonoBehaviour
     private float _horizontal;
     private float _vertical;
 
+    [Header("Animation")]
+    [SerializeField] SpriteRenderer _playerSprite;
+    [SerializeField] Sprite[] _sprites;
+    private int direction; 
+
+
     private void Start ()
     {
         _numSeedsLeft = _numSeeds;
@@ -47,5 +53,11 @@ public class Player : MonoBehaviour
             _numSeedsPlanted++; 
             _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted);
         }
+    }
+
+    public void CollectPlant()
+    {
+        _numSeedsLeft++;
+        _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted); 
     }
 }
